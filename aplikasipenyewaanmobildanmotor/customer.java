@@ -53,5 +53,14 @@ public class customer {
         sewaKendaraan();
     }
 
+    private static void menuCheckout() {
+        System.out.print("Apakah Anda Ingin Checkout (y/n) : ");
+        if (input.next().equals("y")){
+            checkout();
+            admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).statusPenyewaan = true;
+        }
+    }
+
+
 
 }
