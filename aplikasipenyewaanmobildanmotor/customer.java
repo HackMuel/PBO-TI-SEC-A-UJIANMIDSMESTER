@@ -7,6 +7,30 @@ public class customer {
         private static dataAkun dataCurrentPelanggan = new dataAkun();
         private static dataCustomer dataSewaCurrentPelanggan = new dataCustomer();
 
+        private static Scanner input = new Scanner(System.in);
+
+        public static void bukaMenu(){
+            while (true){
+                tampilkanMenuLogin();
+                int pilihan = input.nextInt();
+                switch (pilihan){
+                    case 1:
+                        login();
+                        break;
+                    case 2:
+                        daftarPelanggan();
+                        break;
+                    case 3:
+                        return;
+                    default:
+                        System.out.println("Menu Yang Anda Pilih Tidak Tersedia !!");
+                        break;
+                }
+            }
+
+        }
+
+
         if(!kumpulanAkunPelanggan.isEmpty()){
             System.out.print("Masukan Nama Anda : ");
             input.nextLine();
