@@ -32,26 +32,6 @@ public class customer {
 
     }
 
-    private static void login(){
-        if(!kumpulanAkunPelanggan.isEmpty()){
-        System.out.print("Masukan Nama Anda : ");
-        input.nextLine();
-        String nama = input.nextLine();
-        System.out.print("Masukan Password : ");
-        String password = input.nextLine();
-
-        if(apakahPasswordDanNamaValid(nama,password)){
-            dataCurrentPelanggan.nama = nama;
-            dataCurrentPelanggan.password = password;
-            menuPenyewaan();
-        }else {
-            System.out.println("Nama / Password Yang Anda Masukan Salah !!");
-        }
-    }else{
-        System.out.println("Data Akun Masih Kosong Mohon Mendaftar Terlebih Dahulu !!");
-    }
-}
-
 private static void sewaKendaraan(){
     admin.tampilkanDataKendaraan();
     System.out.print("Masukan Baris Data Kendaraan Yang Ingin Anda Sewa : ");
@@ -121,13 +101,6 @@ private static void menuPenyewaan(){
     }
 }
 
-private static void tulisKeteranganPenyewaan(){
-    if(dataSewaCurrentPelanggan.indexBarisData != -1){
-        System.out.println("\tAnda Sedang Menyewa : " + admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).nama + " (" + admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).nomorPlat + "),Seharga :Rp." + admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).harga + "\n");
-    }else {
-        System.out.println("\tAnda Masih Belum Memesan !! \n");
-    }
-}
 private static void tampilkanMenuPelanggan(){
     System.out.println("SELAMAT DATANG DI MENU PELANGGAN\n");
     System.out.println("\tHalo, " + dataCurrentPelanggan.nama);
@@ -141,15 +114,6 @@ private static void tampilkanMenuPelanggan(){
     System.out.print("Masukan Pilihan Anda : ");
 }
 
-private static void daftarPelanggan(){
-    dataAkun dataAkunBaru = new dataAkun();
-    System.out.print("Masukan Nama Anda : ");
-    input.nextLine();
-    dataAkunBaru.nama = input.nextLine();
-    System.out.print("Masukan Password Anda : ");
-    dataAkunBaru.password = input.nextLine();
-    kumpulanAkunPelanggan.add(dataAkunBaru);
-}
 
     private static void tulisKeteranganPenyewaan(){
         if(dataSewaCurrentPelanggan.indexBarisData != -1){
