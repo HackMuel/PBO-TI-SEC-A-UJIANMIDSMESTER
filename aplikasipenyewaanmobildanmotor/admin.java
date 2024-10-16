@@ -37,7 +37,21 @@ public class admin {
             dataBaru.apakahMotor = false;
         }
     }
+
+    private static void tampilkanDataPelanggan(){
+        if (!apakahDataKosong()){
+            int counter = 1;
+            System.out.println("No.\tNama\tNamaKendaraan\tTipe\tNomorPlat\tHarga\tStatusPembayaran\tStatusPengembalian");
+            for (dataCustomer data : customer.pelanggan){
+                System.out.println(counter + ".\t" + data.nama + "\t\t" + kendaraan.get(data.indexBarisData).nama + "\t\t" + tentukanTipe(kendaraan.get(data.indexBarisData).apakahMotor) +
+                        "\t" + kendaraan.get(data.indexBarisData).nomorPlat + "\tRp." + kendaraan.get(data.indexBarisData).harga + "\t" + apakahSudahDibayar(data.statusPembayaran) +
+                        "\t\t" + apakahSudahDiKembalikan(data.statusPengembalian));
+                counter++;
+            }
+        }
+    }
+
 }
 
 
-}
+

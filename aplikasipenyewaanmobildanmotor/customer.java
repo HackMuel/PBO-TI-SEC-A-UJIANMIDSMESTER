@@ -90,6 +90,13 @@ public class customer {
         }
     }
 
+    private static void tulisKeteranganPenyewaan(){
+        if(dataSewaCurrentPelanggan.indexBarisData != -1){
+            System.out.println("\tAnda Sedang Menyewa : " + admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).nama + " (" + admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).nomorPlat + "),Seharga :Rp." + admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).harga + "\n");
+        }else {
+            System.out.println("\tAnda Masih Belum Memesan !! \n");
+        }
+    }
     private static void tampilkanMenuPelanggan(){
         System.out.println("SELAMAT DATANG DI MENU PELANGGAN\n");
         System.out.println("\tHalo, " + dataCurrentPelanggan.nama);
