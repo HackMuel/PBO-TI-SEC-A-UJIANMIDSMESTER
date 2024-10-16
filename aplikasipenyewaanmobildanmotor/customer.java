@@ -33,5 +33,25 @@ public class customer {
 
     }
 
+    private static void cancelPenyewaan(){
+        dataSewaCurrentPelanggan.indexBarisData = -1;
+    }
+
+    private static int cariNomorBarisPelanggan(){
+        int index = 0;
+        for (dataCustomer data : pelanggan){
+            if(data.nama == dataCurrentPelanggan.nama){
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+
+    private static void ubahSewaKendaraan(){
+        cancelPenyewaan();
+        sewaKendaraan();
+    }
+
 
 }
