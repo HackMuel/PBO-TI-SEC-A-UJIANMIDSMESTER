@@ -84,6 +84,40 @@ public class admin {
         }
     }
 
+    public static ArrayList<dataKendaraan>kendaraan = new ArrayList<>();
+    private static Scanner input = new Scanner(System.in);
+
+    public static void bukaMenu(){
+        while (true){
+            tampilkanMenu();
+            int pilih = input.nextInt();
+            switch (pilih){
+                case 1:
+                    menuTambahDataKendaraan();
+                    break;
+                case 2:
+                    menuEditDataKendaraan();
+                    break;
+                case 3:
+                    menuHapusDataKendaraan();
+                    break;
+                case 4:
+                    tampilkanDataKendaraan();
+                    break;
+                case 5:
+                    tampilkanDataPelanggan();
+                    break;
+                case 6:
+                    return;
+                default:
+                    System.out.println("Menu Yang Anda Masukan Tidak Tersedia !!");
+                    break;
+            }
+        }
+    }
+
+
+
 }
 
 
