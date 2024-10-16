@@ -1,5 +1,8 @@
 package aplikasipenyewaanmobildanmotor;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class admin {
     private static void menuTambahDataKendaraan(){
         dataKendaraan dataBaru = new dataKendaraan();
