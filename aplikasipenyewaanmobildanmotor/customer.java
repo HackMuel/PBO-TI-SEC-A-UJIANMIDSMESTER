@@ -90,4 +90,17 @@ public class customer {
         }
     }
 
+    private static void tampilkanMenuPelanggan(){
+        System.out.println("SELAMAT DATANG DI MENU PELANGGAN\n");
+        System.out.println("\tHalo, " + dataCurrentPelanggan.nama);
+        tulisKeteranganPenyewaan();
+        System.out.println("1.Sewa Kendaraan");
+        System.out.println("2.Edit Kendaraan Yang Di Sewa");
+        System.out.println("3.Cancel Penyewaan");
+        System.out.println("4.CheckOut");
+        System.out.println("5.Kembalikan Kendaraan");
+        System.out.println("6.Logout");
+        System.out.print("Masukan Pilihan Anda : ");
+    }
+
 }
