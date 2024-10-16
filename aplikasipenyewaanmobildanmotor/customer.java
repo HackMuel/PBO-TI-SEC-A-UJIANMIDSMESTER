@@ -103,4 +103,15 @@ public class customer {
         System.out.print("Masukan Pilihan Anda : ");
     }
 
+    private static void daftarPelanggan(){
+        dataAkun dataAkunBaru = new dataAkun();
+        System.out.print("Masukan Nama Anda : ");
+        input.nextLine();
+        dataAkunBaru.nama = input.nextLine();
+        System.out.print("Masukan Password Anda : ");
+        dataAkunBaru.password = input.nextLine();
+        kumpulanAkunPelanggan.add(dataAkunBaru);
+    }
+
+
 }
