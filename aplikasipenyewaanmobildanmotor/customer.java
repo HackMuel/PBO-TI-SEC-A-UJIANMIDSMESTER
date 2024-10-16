@@ -21,4 +21,17 @@ public class customer {
         }
     }
 
+    private static void sewaKendaraan(){
+        admin.tampilkanDataKendaraan();
+        System.out.print("Masukan Baris Data Kendaraan Yang Ingin Anda Sewa : ");
+        int index = input.nextInt() -1;
+        if(admin.kendaraan.get(index).statusPenyewaan == false){
+            dataSewaCurrentPelanggan.indexBarisData = index;
+        }else {
+            System.out.println("Kendaraan Tidak Tersedia !!");
+        }
+
+    }
+
+
 }
