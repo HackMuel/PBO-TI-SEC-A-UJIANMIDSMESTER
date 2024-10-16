@@ -61,6 +61,33 @@ public class customer {
         }
     }
 
-
+    private static void menuPenyewaan(){
+        while (true){
+            tampilkanMenuPelanggan();
+            int pilihan = input.nextInt();
+            switch (pilihan){
+                case 1:
+                    sewaKendaraan();
+                    break;
+                case 2:
+                    ubahSewaKendaraan();
+                    break;
+                case 3:
+                    cancelPenyewaan();
+                    break;
+                case 4:
+                    menuCheckout();
+                    break;
+                case 5:
+                    kembalikanKendaraan();
+                    break;
+                case 6:
+                    return;
+                default:
+                    System.out.println("Menu Yang Anda Pilih Tidak Tersedia !!");
+                    break;
+            }
+        }
+    }
 
 }
