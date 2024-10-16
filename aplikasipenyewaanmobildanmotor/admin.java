@@ -29,4 +29,15 @@ public class admin {
         }
     }
 
+    private static void masukanTipeKendaraan(dataKendaraan dataBaru) {
+        System.out.print("Masukan Tipe Kendaraan (motor / mobil) : ");
+        if(input.next().equals("motor") ){
+            dataBaru.apakahMotor = true;
+        }else{
+            dataBaru.apakahMotor = false;
+        }
+    }
+}
+
+
 }
