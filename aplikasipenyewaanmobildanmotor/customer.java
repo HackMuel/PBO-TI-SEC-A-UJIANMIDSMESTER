@@ -2,6 +2,11 @@ package aplikasipenyewaanmobildanmotor;
 
 public class customer {
     private static void login(){
+        public static ArrayList<dataCustomer>pelanggan = new ArrayList<>();
+        private static ArrayList<dataAkun> kumpulanAkunPelanggan = new ArrayList<>();
+        private static dataAkun dataCurrentPelanggan = new dataAkun();
+        private static dataCustomer dataSewaCurrentPelanggan = new dataCustomer();
+
         if(!kumpulanAkunPelanggan.isEmpty()){
             System.out.print("Masukan Nama Anda : ");
             input.nextLine();
