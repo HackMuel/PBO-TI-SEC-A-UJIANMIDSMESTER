@@ -51,6 +51,39 @@ public class admin {
         }
     }
 
+    private static boolean apakahDataKosong(){
+        if(kendaraan.isEmpty()){
+            System.out.println("Data Masih Kosong !!");
+            return true;
+        }
+        return false;
+    }
+
+    private static String apakahSudahDiKembalikan(boolean statusPengembalian){
+        if(!statusPengembalian){
+            return "Belum Di Kembalikan";
+        }
+        return "Sudah Di Kembalikan";
+    }
+
+    private static String apakahSudahDibayar(boolean statusPembayaran){
+        if (!statusPembayaran){
+            return "Belum Di Bayar";
+        }
+        return "Sudah Di Bayar";
+    }
+
+    public static void tampilkanDataKendaraan(){
+        if (!apakahDataKosong()){
+            int counter = 1;
+            System.out.println("No.\tNama\tTipe\tNomorPlat\tHarga\tStatus");
+            for (dataKendaraan data : kendaraan){
+                System.out.println(counter + "\t" + data.nama + "\t" + tentukanTipe(data.apakahMotor) + "\t" + data.nomorPlat + "\tRp." + data.harga + "\t" + apakahSedangDiSewa(data.statusPenyewaan));
+                counter++;
+            }
+        }
+    }
+
 }
 
 
