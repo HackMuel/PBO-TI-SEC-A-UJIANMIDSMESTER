@@ -32,72 +32,47 @@ public class customer {
 
     }
 
-private static void sewaKendaraan(){
-    admin.tampilkanDataKendaraan();
-    System.out.print("Masukan Baris Data Kendaraan Yang Ingin Anda Sewa : ");
-    int index = input.nextInt() -1;
-    if(admin.kendaraan.get(index).statusPenyewaan == false){
-        dataSewaCurrentPelanggan.indexBarisData = index;
-    }else {
-        System.out.println("Kendaraan Tidak Tersedia !!");
-    }
-
-}
-
-private static void cancelPenyewaan(){
-    dataSewaCurrentPelanggan.indexBarisData = -1;
-}
-
-
-private static void ubahSewaKendaraan(){
-    cancelPenyewaan();
-    sewaKendaraan();
-}
-
-
-
-private static void menuPenyewaan(){
-    while (true){
-        tampilkanMenuPelanggan();
-        int pilihan = input.nextInt();
-        switch (pilihan){
-            case 1:
-                sewaKendaraan();
-                break;
-            case 2:
-                ubahSewaKendaraan();
-                break;
-            case 3:
-                cancelPenyewaan();
-                break;
-            case 4:
-                menuCheckout();
-                break;
-            case 5:
-                kembalikanKendaraan();
-                break;
-            case 6:
-                return;
-            default:
-                System.out.println("Menu Yang Anda Pilih Tidak Tersedia !!");
-                break;
+    private static void menuPenyewaan(){
+        while (true){
+            tampilkanMenuPelanggan();
+            int pilihan = input.nextInt();
+            switch (pilihan){
+                case 1:
+                    sewaKendaraan();
+                    break;
+                case 2:
+                    ubahSewaKendaraan();
+                    break;
+                case 3:
+                    cancelPenyewaan();
+                    break;
+                case 4:
+                    menuCheckout();
+                    break;
+                case 5:
+                    kembalikanKendaraan();
+                    break;
+                case 6:
+                    return;
+                default:
+                    System.out.println("Menu Yang Anda Pilih Tidak Tersedia !!");
+                    break;
+            }
         }
     }
-}
 
-private static void tampilkanMenuPelanggan(){
-    System.out.println("SELAMAT DATANG DI MENU PELANGGAN\n");
-    System.out.println("\tHalo, " + dataCurrentPelanggan.nama);
-    tulisKeteranganPenyewaan();
-    System.out.println("1.Sewa Kendaraan");
-    System.out.println("2.Edit Kendaraan Yang Di Sewa");
-    System.out.println("3.Cancel Penyewaan");
-    System.out.println("4.CheckOut");
-    System.out.println("5.Kembalikan Kendaraan");
-    System.out.println("6.Logout");
-    System.out.print("Masukan Pilihan Anda : ");
-}
-
+    private static void tampilkanMenuPelanggan(){
+        System.out.println("SELAMAT DATANG DI MENU PELANGGAN\n");
+        System.out.println("\tHalo, " + dataCurrentPelanggan.nama);
+        tulisKeteranganPenyewaan();
+        System.out.println("1.Sewa Kendaraan");
+        System.out.println("2.Edit Kendaraan Yang Di Sewa");
+        System.out.println("3.Cancel Penyewaan");
+        System.out.println("4.CheckOut");
+        System.out.println("5.Kembalikan Kendaraan");
+        System.out.println("6.Logout");
+        System.out.print("Masukan Pilihan Anda : ");
+    }
 
     private static void tulisKeteranganPenyewaan(){
         if(dataSewaCurrentPelanggan.indexBarisData != -1){
@@ -107,18 +82,45 @@ private static void tampilkanMenuPelanggan(){
         }
     }
 
+    private static void sewaKendaraan(){
+        admin.tampilkanDataKendaraan();
+        System.out.print("Masukan Baris Data Kendaraan Yang Ingin Anda Sewa : ");
+        int index = input.nextInt() -1;
+        if(!admin.kendaraan.get(index).statusPenyewaan){
+            dataSewaCurrentPelanggan.indexBarisData = index;
+        }else {
+            System.out.println("Kendaraan Tidak Tersedia !!");
+        }
+
+    }
+
+    private static void cancelPenyewaan(){
+        dataSewaCurrentPelanggan.indexBarisData = -1;
+    }
 
 
+    private static void ubahSewaKendaraan(){
+        cancelPenyewaan();
+        sewaKendaraan();
+    }
+
+    private static dataCustomer ambilDataPelanggan(String nama, int indexBaris, boolean statusPengembalian ){
+        dataCustomer dataBaru = new dataCustomer();
+        dataBaru.nama = nama;
+        dataBaru.indexBarisData = indexBaris;
+        dataBaru.statusPengembalian = statusPengembalian;
+        dataBaru.statusPembayaran = true;
+        return dataBaru;
+    }
 
     private static void checkout(){
         if (dataSewaCurrentPelanggan.indexBarisData != -1){
             dataSewaCurrentPelanggan.statusPembayaran = true;
             dataSewaCurrentPelanggan.nama = dataCurrentPelanggan.nama;
-            pelanggan.add(ambilDataPelanggan(dataCurrentPelanggan.nama, dataSewaCurrentPelanggan.indexBarisData, dataSewaCurrentPelanggan.statusPengembalian,true));
+            pelanggan.add(ambilDataPelanggan(dataCurrentPelanggan.nama, dataSewaCurrentPelanggan.indexBarisData, dataSewaCurrentPelanggan.statusPengembalian));
         }else {
             System.out.println("Anda Masih Belum Memesan !!");
         }
-
     }
 
     private static int cariBarisNamaPelanggan(String target){
@@ -136,9 +138,9 @@ private static void tampilkanMenuPelanggan(){
         int indexNama = cariBarisNamaPelanggan(dataCurrentPelanggan.nama);
         if(indexNama != -1){
             pelanggan.get(indexNama).statusPengembalian = true;
-            pelanggan.get(indexNama).indexBarisData = dataSewaCurrentPelanggan.indexBarisData;
             kembalikanStatusPenyewaan();
             dataSewaCurrentPelanggan.indexBarisData = -1;
+
         }
     }
 
@@ -153,7 +155,6 @@ private static void tampilkanMenuPelanggan(){
             admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).statusPenyewaan = true;
         }
     }
-
 
     private static void tampilkanMenuLogin(){
         System.out.println("SELAMAT DATANG DI MENU PELANGGAN");
@@ -211,16 +212,6 @@ private static void tampilkanMenuPelanggan(){
         }
         return kumpulanAkunPelanggan.get(indexNama).nama.equals(nama) && kumpulanAkunPelanggan.get(indexNama).password.equals(password);
     }
-
-    private static dataCustomer ambilDataPelanggan(String nama, int indexBaris, boolean statusPengembalian, boolean statusPembayaran ){
-        dataCustomer dataBaru = new dataCustomer();
-        dataBaru.nama = nama;
-        dataBaru.indexBarisData = indexBaris;
-        dataBaru.statusPengembalian = statusPengembalian;
-        dataBaru.statusPembayaran = statusPembayaran;
-        return dataBaru;
-    }
-
 
 
 }
