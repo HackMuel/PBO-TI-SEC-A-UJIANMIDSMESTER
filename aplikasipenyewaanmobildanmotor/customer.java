@@ -48,29 +48,13 @@ private static void cancelPenyewaan(){
     dataSewaCurrentPelanggan.indexBarisData = -1;
 }
 
-private static int cariNomorBarisPelanggan(){
-    int index = 0;
-    for (dataCustomer data : pelanggan){
-        if(data.nama == dataCurrentPelanggan.nama){
-            return index;
-        }
-        index++;
-    }
-    return -1;
-}
 
 private static void ubahSewaKendaraan(){
     cancelPenyewaan();
     sewaKendaraan();
 }
 
-private static void menuCheckout() {
-    System.out.print("Apakah Anda Ingin Checkout (y/n) : ");
-    if (input.next().equals("y")){
-        checkout();
-        admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).statusPenyewaan = true;
-    }
-}
+
 
 private static void menuPenyewaan(){
     while (true){
@@ -127,9 +111,13 @@ private static void tampilkanMenuPelanggan(){
 
 
     private static void checkout(){
-        dataSewaCurrentPelanggan.statusPembayaran = true;
-        dataSewaCurrentPelanggan.nama = dataCurrentPelanggan.nama;
-        pelanggan.add(dataSewaCurrentPelanggan);
+        if (dataSewaCurrentPelanggan.indexBarisData != -1){
+            dataSewaCurrentPelanggan.statusPembayaran = true;
+            dataSewaCurrentPelanggan.nama = dataCurrentPelanggan.nama;
+            pelanggan.add(ambilDataPelanggan(dataCurrentPelanggan.nama, dataSewaCurrentPelanggan.indexBarisData, dataSewaCurrentPelanggan.statusPengembalian,true));
+        }else {
+            System.out.println("Anda Masih Belum Memesan !!");
+        }
 
     }
 
@@ -148,16 +136,24 @@ private static void tampilkanMenuPelanggan(){
         int indexNama = cariBarisNamaPelanggan(dataCurrentPelanggan.nama);
         if(indexNama != -1){
             pelanggan.get(indexNama).statusPengembalian = true;
-            dataSewaCurrentPelanggan.indexBarisData = -1;
-            pelanggan.get(cariNomorBarisPelanggan()).statusPengembalian = false;
+            pelanggan.get(indexNama).indexBarisData = dataSewaCurrentPelanggan.indexBarisData;
             kembalikanStatusPenyewaan();
-
+            dataSewaCurrentPelanggan.indexBarisData = -1;
         }
     }
 
     private static void kembalikanStatusPenyewaan(){
-        admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).statusPenyewaan = true;
+        admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).statusPenyewaan = false;
     }
+
+    private static void menuCheckout() {
+        System.out.print("Apakah Anda Ingin Checkout (y/n) : ");
+        if (input.next().equals("y")){
+            checkout();
+            admin.kendaraan.get(dataSewaCurrentPelanggan.indexBarisData).statusPenyewaan = true;
+        }
+    }
+
 
     private static void tampilkanMenuLogin(){
         System.out.println("SELAMAT DATANG DI MENU PELANGGAN");
@@ -214,6 +210,15 @@ private static void tampilkanMenuPelanggan(){
             return false;
         }
         return kumpulanAkunPelanggan.get(indexNama).nama.equals(nama) && kumpulanAkunPelanggan.get(indexNama).password.equals(password);
+    }
+
+    private static dataCustomer ambilDataPelanggan(String nama, int indexBaris, boolean statusPengembalian, boolean statusPembayaran ){
+        dataCustomer dataBaru = new dataCustomer();
+        dataBaru.nama = nama;
+        dataBaru.indexBarisData = indexBaris;
+        dataBaru.statusPengembalian = statusPengembalian;
+        dataBaru.statusPembayaran = statusPembayaran;
+        return dataBaru;
     }
 
 
